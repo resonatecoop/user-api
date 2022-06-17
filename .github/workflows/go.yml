@@ -1,0 +1,27 @@
+name: Go
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  generate:
+    name: Regenerate files and build
+    runs-on: ubuntu-latest
+    container: 
+      image: golang:latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Install tools
+      run: make install
+    - name: Regenerate files
+      run: make generate
+    - name: Build
+      run: go build

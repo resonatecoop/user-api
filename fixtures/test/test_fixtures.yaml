@@ -1,0 +1,95 @@
+- model: User
+  rows:
+    - id: 243b4178-6f98-4bf1-bbb1-46b57a901816
+      legacy_id: 100001
+      created_at: '{{ now }}'
+      username: jimmy@hendrix.com
+      full_name: Jimmy Hendrix
+      first_name: Jimmy
+      last_name: Hendrix
+      tenant_id: 0
+      role_id: 3
+      member: true
+    - id: 5253747c-2b8c-40e2-8a70-bab91348a9bd
+      legacy_id: 100002
+      created_at: '{{ now }}'
+      username: miles@davis.com
+      full_name: Miles Davis
+      first_name: Miles
+      last_name: Davis
+      tenant_id: 0
+      role_id: 5
+      member: false
+    - id: af0494cd-d082-459b-87bf-7fddc3414f65
+      created_at: '{{ now }}'
+      legacy_id: 100003
+      username: john@coltrane.com
+      full_name: John Coltrane
+      first_name: John
+      last_name: Coltrane
+      tenant_id: 0
+      role_id: 4
+      member: true
+    - id: f40cf437-eef2-4659-8eb3-7ee93f6dfcea
+      legacy_id: 100004
+      role_id: 1
+      created_at: '{{ now }}'
+      username: 'test@superuser.com'
+      password:
+        string: '$2a$10$4J4t9xuWhOKhfjN0bOKNReS9sL3BVSN9zxIr2.VaWWQfRBWh1dQIS'
+        valid: true
+    - id: 046e7a23-a9f0-4fb8-a60f-861b2df05d95
+      legacy_id: 100005
+      role_id: 5
+      created_at: '{{ now }}'
+      username: 'test@user.com'
+      password:
+        string: '$2a$10$4J4t9xuWhOKhfjN0bOKNReS9sL3BVSN9zxIr2.VaWWQfRBWh1dQIS'
+        valid: true
+    - id: 953c3537-3149-4164-9c73-ec785a3c17c4
+      legacy_id: 100006
+      role_id: 5
+      created_at: '{{ now }}'
+      username: 'test@user2.com'
+      password:
+        string: '$2a$10$4J4t9xuWhOKhfjN0bOKNReS9sL3BVSN9zxIr2.VaWWQfRBWh1dQIS'
+        valid: true
+- model: AccessToken
+  rows:
+    - created_at: '{{ now }}'
+      client_id: 3392e754-ba3e-424f-a687-add9a8ab39c9
+      user_id: 243b4178-6f98-4bf1-bbb1-46b57a901816
+      token: 'test_superuser_token'
+      expires_at: '{{ now }}'
+    - created_at: '{{ now }}'
+      client_id: 3392e754-ba3e-424f-a687-add9a8ab39c9
+      user_id: 5253747c-2b8c-40e2-8a70-bab91348a9bd
+      token: 'test_user_token'
+      expires_at: '{{ now }}'
+    - created_at: '{{ now }}'
+      client_id: 295be195-898c-4f0c-b6a0-8c62105f42de
+      user_id: 86a72db9-eb16-45ae-8003-ac37d8dc5cbb
+      token: 'test_user_token_2'
+      expires_at: '{{ now }}'
+- model: Client
+  rows:
+    - id: 3392e754-ba3e-424f-a687-add9a8ab39c9
+      created_at: '{{ now }}'
+      application_name:
+        string: test_client_1
+        valid: true
+      key: test_client_1
+      secret: '$2a$10$CUoGytf1pR7CC6Y043gt/.vFJUV4IRqvH5R6F0VfITP8s2TqrQ.4e'
+      redirect_uri:
+        string: https://www.example.com
+        valid: true
+    - id: 295be195-898c-4f0c-b6a0-8c62105f42de
+      created_at: '{{ now }}'
+      application_name:
+        string: test_client_2
+        valid: true
+      key: test_client_2
+      secret: '$2a$10$CUoGytf1pR7CC6Y043gt/.vFJUV4IRqvH5R6F0VfITP8s2TqrQ.4e'
+      redirect_uri:
+        string: https://www.example.com
+        valid: true

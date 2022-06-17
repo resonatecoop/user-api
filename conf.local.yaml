@@ -1,0 +1,29 @@
+server:
+  cert_name: "uaclient"
+  read_timeout_seconds: 31
+  write_timeout_seconds: 30
+
+database:
+  dev:
+    psn: postgres://resonate_dev_user:password@127.0.0.1:5432/resonate_dev?sslmode=disable
+    log_queries: true
+    timeout_seconds: 10
+  test:
+    psn: postgres://resonate_test_user:password@127.0.0.1:5432/resonate_test?sslmode=disable
+    log_queries: true
+    timeout_seconds: 10
+
+refreshtoken:
+  lifetime_seconds: 1209600
+
+access:
+  no_token_methods: "/user.ResonateUser/AddUser,/user.ResonateUser/GetUserGroup"
+  public_methods: "/user.ResonateUser/GetUser,/user.ResonateUser/GetUserCredits,/user.ResonateUser/GetUserMembership,/user.ResonateUser/UpdateUser,/user.ResonateUser/AddUserGroup,/user.ResonateUser/UpdateUserGroup,/user.ResonateUser/ListUsersUserGroups"
+  write_methods: "/user.ResonateUser/DeleteUser,/user.ResonateUser/UpdateUser,/user.ResonateUser/AddUserGroup,/user.ResonateUser/UpdateUserGroup"
+
+application:
+  min_password_strength: 0 # Minimum password zxcvbn strength
+
+openapi:
+ username: admin
+ password: admin
