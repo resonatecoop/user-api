@@ -1,6 +1,8 @@
 package uuidpkg
 
 import (
+	"errors"
+
 	uuid "github.com/google/uuid"
 )
 
@@ -9,7 +11,7 @@ func IsValidUUID(u string) bool {
 	return err == nil
 }
 
-//ConvertUUIDToStrArray returns a slice of uuids for given slive of strings
+//ConvertUUIDToStrArray returns a slice of strings for given slice of uuids
 func ConvertUUIDToStrArray(uuids []uuid.UUID) []string {
 	strArray := make([]string, len(uuids))
 	for i := range uuids {
@@ -18,14 +20,26 @@ func ConvertUUIDToStrArray(uuids []uuid.UUID) []string {
 	return strArray
 }
 
-// // GetUUIDFromString returns id as string and returns error if not a valid uuid
-// func GetUUIDFromString(id string) (uuid.UUID, twirp.Error) {
-// 	uid, err := uuid.FromString(id)
-// 	if err != nil {
-// 		return uuid.UUID{}, twirp.InvalidArgumentError("id", "must be a valid uuid")
-// 	}
-// 	return uid, nil
-// }
+//ConvertUUIDToStrArray returns a slice of uuids for given slice of strings
+func ConvertStrToUUIDArray(str []string) []uuid.UUID {
+	uuidArray := make([]uuid.UUID, len(str))
+	for i := range str {
+		u, err := uuid.Parse(str[i])
+		if err != nil {
+			uuidArray[i] = u
+		}
+	}
+	return uuidArray
+}
+
+// GetUUIDFromString returns id as string and returns error if not a valid uuid
+func GetUUIDFromString(id string) (uuid.UUID, error) {
+	uid, err := uuid.Parse(id)
+	if err != nil {
+		return uuid.UUID{}, errors.New("must be a valid uuid")
+	}
+	return uid, nil
+}
 
 // Difference returns difference between two slices of uuids
 func Difference(a, b []uuid.UUID) []uuid.UUID {
