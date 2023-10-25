@@ -171,8 +171,6 @@ message UserListResponse {
 //   repeated Track tracks = 1;
 // }
 
-
-
 // message Artists {
 //   repeated RelatedUserGroup artists = 1;
 // }
